@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#261437">
+  <meta name="description" content="משחק מגע בדפדפן.">
+  <title>עוד משחק בהפתעה</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/pillows.jpg" as="image">
+  <link rel="preload" href="assets/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" type="module"></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-heart" viewBox="0 0 32 32">
+      <path d="M16 27 5.3 16.7a6.7 6.7 0 0 1 9.5-9.4L16 8.5l1.2-1.2a6.7 6.7 0 0 1 9.5 9.4Z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 32 32">
+      <path d="M16 3.5 20 12l9.3 1.3-6.7 6.6 1.6 9.2-8.2-4.4-8.2 4.4 1.6-9.2-6.7-6.6L12 12Z" fill="currentColor" stroke="currentColor" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="i-flower" viewBox="0 0 32 32">
+      <path d="M16 7c4-8 12-3 9 4 8 .4 8 10 1 12-1 7-8 8-10 2-3 6-10 5-10-2-8-2-7-11 1-12-3-7 5-12 9-4Z" fill="currentColor" stroke="none"/>
+      <circle cx="16" cy="16" r="4" fill="var(--icon-hole, #fff2b0)" stroke="none"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 32 32">
+      <path d="M26.4 21.4A12.2 12.2 0 0 1 11.3 5.2a12.7 12.7 0 1 0 15.1 16.2Z" fill="currentColor" stroke="none"/>
+      <path d="M23 5.1v8m-4-4h8" stroke-width="2.2"/>
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 32 32">
+      <path d="M16 1.8c1.1 8.1 5.8 12.9 14.2 14.2C21.8 17.3 17.1 22.1 16 30.2 14.9 22.1 10.2 17.3 1.8 16 10.2 14.7 14.9 9.9 16 1.8Z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-bow" viewBox="0 0 44 34">
+      <path d="m21 16-9 15-4-7-7-1 13-11m10 3 9 16 3-7 7-1-12-11" fill="#e56b9a" stroke="#a93f73" stroke-width="1.3"/>
+      <path d="M21 13C15 5 4-1 2 6c-3 10 0 17 6 15l13-5m2-3c6-8 17-14 19-7 3 10 0 17-6 15l-13-5" fill="#f78db7" stroke="#a93f73" stroke-width="1.4"/>
+      <path d="m7 6 9 5m21-5-9 5" stroke="#ffd2e4" stroke-width="2"/>
+      <rect x="17" y="9" width="10" height="12" rx="4" fill="#ffd2e4" stroke="#a93f73" stroke-width="1.2"/>
+    </symbol>
+    <symbol id="i-crown" viewBox="0 0 44 34">
+      <path d="M5 12 14 19 22 4l8 15 9-7-3.6 18H8.6Z" fill="#ffe47c" stroke="#ba7038" stroke-width="2"/>
+      <path d="M9 25h26" stroke="#efab49" stroke-width="2.5"/>
+      <path d="m22 15 3.5 4-3.5 4-3.5-4Z" fill="#f67ca8" stroke="none"/>
+      <circle cx="5" cy="11" r="2.6" fill="#fff1a1" stroke="#ba7038" stroke-width="1"/>
+      <circle cx="39" cy="11" r="2.6" fill="#fff1a1" stroke="#ba7038" stroke-width="1"/>
+      <circle cx="22" cy="4" r="2.6" fill="#fff1a1" stroke="#ba7038" stroke-width="1"/>
+    </symbol>
+    <symbol id="i-bloom" viewBox="0 0 44 34">
+      <path d="M22 9c1-11 13-9 13 0 10-3 13 9 3 12 3 10-10 15-16 6-6 9-19 4-16-6C-4 18-1 6 9 9c0-9 12-11 13 0Z" fill="#ad9af9" stroke="#6e4bb8" stroke-width="1.5"/>
+      <circle cx="22" cy="16.8" r="6" fill="#ffe47c" stroke="#c58d43" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="i-sound" viewBox="0 0 32 32">
+      <path d="M15 6 9 11H4v10h5l6 5ZM20 11a7 7 0 0 1 0 10m4-14a12 12 0 0 1 0 18" />
+    </symbol>
+    <symbol id="i-mute" viewBox="0 0 32 32">
+      <path d="M15 6 9 11H4v10h5l6 5Zm6 6 8 8m0-8-8 8"/>
+    </symbol>
+    <symbol id="i-back" viewBox="0 0 32 32"><path d="m12 7 9 9-9 9"/></symbol>
+    <symbol id="i-go" viewBox="0 0 32 32"><path d="m20 7-9 9 9 9"/></symbol>
+    <symbol id="i-replay" viewBox="0 0 32 32">
+      <path d="M6 8v8h8M6 15a10 10 0 1 1 2.4 8.2"/>
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 32 32">
+      <path d="M3 16s4.8-8 13-8 13 8 13 8-4.8 8-13 8S3 16 3 16Z"/>
+      <circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-tap" viewBox="0 0 32 32">
+      <path d="M12 13V7a2.2 2.2 0 0 1 4.4 0v10l1-1.4c.8-1 2.2-1 3 0l.5.6 1.4-.4c1.8-.4 3.6 1 3.6 3v3.1c0 4.4-2.8 7.1-7.1 7.1h-1c-2.8 0-4.8-1.4-6.6-3.5L7 20.7a2.1 2.1 0 0 1 3.1-2.8l2 1.8"/>
+      <path d="M7 6 5 4m17 2 2-2M14 2V1"/>
+    </symbol>
+    <symbol id="i-note" viewBox="0 0 32 32">
+      <path d="M13 23V7l14-3v16M13 23c0 1.9-1.8 3.4-4 3.4s-4-1.5-4-3.4 1.8-3.4 4-3.4 4 1.5 4 3.4Zm14-3c0 1.9-1.8 3.4-4 3.4s-4-1.5-4-3.4 1.8-3.4 4-3.4 4 1.5 4 3.4Z"/>
+    </symbol>
+  </svg>
+
+  <main id="app" data-view="home">
+    <section class="home" id="home-screen" aria-labelledby="game-title">
+      <div class="home-art" aria-hidden="true"></div>
+      <header class="topbar">
+        <button type="button" class="icon-button sound" aria-label="השתקת מוזיקה">
+          <svg class="icon"><use href="#i-sound"/></svg>
+        </button>
+        <div id="home-stars" class="home-stars" hidden aria-label="כוכבים שנאספו"></div>
+      </header>
+      <div class="home-title">
+        <svg class="icon title-spark spark-one" aria-hidden="true"><use href="#i-spark"/></svg>
+        <svg class="icon title-spark spark-two" aria-hidden="true"><use href="#i-spark"/></svg>
+        <h1 id="game-title"><span>דיסקו</span><span>פיג׳מות!</span></h1>
+        <p>איימי, בואי לרקוד!</p>
+      </div>
+      <div class="cast home-cast" id="home-cast" aria-hidden="true"></div>
+      <div class="home-actions">
+        <button id="start" type="button" class="big-button">
+          <svg class="icon" aria-hidden="true"><use href="#i-note"/></svg>
+          למסיבה!
+          <svg class="icon arrow" aria-hidden="true"><use href="#i-go"/></svg>
+        </button>
+        <button id="home-free" class="simple-button" type="button" hidden>ריקוד חופשי</button>
+      </div>
+    </section>
+
+    <section id="dress-screen" class="dress" aria-labelledby="dress-title" hidden>
+      <header class="topbar subhead">
+        <button class="icon-button" id="dress-back" type="button" aria-label="לתפריט">
+          <svg class="icon"><use href="#i-back"/></svg>
+        </button>
+        <h2 id="dress-title">מתכוננות למסיבה</h2>
+        <button type="button" class="icon-button sound" aria-label="השתקת מוזיקה">
+          <svg class="icon"><use href="#i-sound"/></svg>
+        </button>
+      </header>
+      <div class="dress-stage" aria-hidden="true">
+        <div class="dress-glow"></div>
+        <div class="cast dress-cast" id="dress-cast"></div>
+        <svg class="icon dress-spark dress-spark-right"><use href="#i-spark"/></svg>
+        <svg class="icon dress-spark dress-spark-left"><use href="#i-spark"/></svg>
+      </div>
+      <div class="dress-panel">
+        <h3 id="accessory-title">מה נשים לבּוּנִי?</h3>
+        <div id="accessories" class="accessories" role="group" aria-labelledby="accessory-title"></div>
+        <div id="select-track" class="select-track" hidden>
+          <span id="select-label">לאיזו רחבה?</span>
+          <div id="track-choices" class="track-choices" role="group" aria-labelledby="select-label"></div>
+        </div>
+        <button id="begin" class="big-button" type="button">
+          לבמה!
+          <svg class="icon arrow" aria-hidden="true"><use href="#i-go"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section id="game-screen" class="game" data-track="pillows" data-phase="watch" aria-label="רחבת הריקודים" hidden>
+      <header class="game-head topbar subhead">
+        <button class="icon-button" id="game-back" type="button" aria-label="לתפריט">
+          <svg class="icon"><use href="#i-back"/></svg>
+        </button>
+        <div class="track-heading">
+          <h2 id="track-title"></h2>
+          <div id="track-stars" class="track-stars" role="img" aria-label="התקדמות"></div>
+        </div>
+        <button type="button" class="icon-button sound" aria-label="השתקת מוזיקה">
+          <svg class="icon"><use href="#i-sound"/></svg>
+        </button>
+      </header>
+
+      <div class="stage" id="stage">
+        <div class="stage-art" aria-hidden="true"></div>
+        <div class="stage-lights" aria-hidden="true"></div>
+        <div class="phase">
+          <div class="phase-message" role="status">
+            <svg class="icon" aria-hidden="true"><use id="phase-icon" href="#i-eye"/></svg>
+            <strong id="phase-title">שימי לב!</strong>
+          </div>
+          <p id="phase-detail">הסתכלי מי רוקד</p>
+          <div class="beads" id="beads" role="img" aria-label="סדר התנועות"></div>
+          <button id="continue" class="simple-button continue" type="button" hidden>להמשיך</button>
+        </div>
+        <div id="game-cast" class="cast game-cast"></div>
+        <div class="effects" id="effects" aria-hidden="true"></div>
+      </div>
+
+      <footer class="console">
+        <div class="pads" id="pads" role="group" aria-label="כפתורי הריקוד"></div>
+        <button id="repeat" class="simple-button repeat" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#i-replay"/></svg>
+          תראי לי שוב
+        </button>
+      </footer>
+    </section>
+
+    <dialog id="reward" class="reward" aria-labelledby="reward-title">
+      <div class="reward-content">
+        <div id="prize" class="prize" aria-hidden="true">
+          <svg class="icon prize-spark"><use href="#i-spark"/></svg>
+          <svg class="icon prize-star"><use href="#i-star"/></svg>
+          <svg class="icon prize-spark"><use href="#i-spark"/></svg>
+        </div>
+        <div class="reward-stars" id="reward-stars" role="img" aria-label="הכוכבים שלך"></div>
+        <h2 id="reward-title"></h2>
+        <p id="reward-detail"></p>
+        <button id="reward-next" class="big-button" type="button"></button>
+        <button id="reward-replay" class="simple-button" type="button">שוב!</button>
+        <button id="reward-home" class="simple-button" type="button">לתפריט</button>
+      </div>
+    </dialog>
+  </main>
+</body>
+</html>
